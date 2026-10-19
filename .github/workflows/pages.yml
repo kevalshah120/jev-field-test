@@ -1,0 +1,46 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanity checks (valid JSON, relative paths, no dashes in data)
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, re, sys
+          site = pathlib.Path("site")
+          for f in site.glob("data/*.json"):
+              json.loads(f.read_text(encoding="utf-8"))
+          bad = []
+          for f in list(site.glob("*.html")) + list(site.glob("js/*.js")) + list(site.glob("css/*.css")):
+              t = f.read_text(encoding="utf-8")
+              if re.search(r'(?:src|href)="/(?!/)', t) or re.search(r"fetch\((?:'|\"|`)/", t):
+                  bad.append(str(f))
+              if "\u2014" in t or "\u2013" in t:
+                  bad.append(str(f) + " (dash)")
+          sys.exit("problems: " + ", ".join(bad) if bad else 0)
+          PY
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

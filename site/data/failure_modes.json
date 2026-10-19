@@ -1,0 +1,106 @@
+[
+ {
+  "n": 1,
+  "key": "literal",
+  "name": "Literal reading",
+  "status": "Partly",
+  "reading": "Wording is taken literally and the question text outranks the option definitions. There is no dedicated test of scoping words or implied conditions.",
+  "evidence": [
+   "Instruction against swapped true/false definitions: Jev followed the instruction on 98.0% (SST-2) and 99.0% (SMS spam) of items.",
+   "Question form against statement form: BoolQ 89.0% vs 91.0%; SMS spam 99.0% vs 99.0%; SST-2 97.0% vs 97.0%.",
+   "CVSS levels as numbers or in words: 52.2% vs 49.7% (McNemar p = 0.16).",
+   "LegalBench 81.0%, CONDAQA 61.3%."
+  ]
+ },
+ {
+  "n": 2,
+  "key": "numbers",
+  "name": "Math and numbers",
+  "status": "Tested",
+  "reading": "Confirmed weak whenever the decision hinges on numbers or counting. Compute in code, then ask Jev about the result.",
+  "evidence": [
+   "Anonymous card numbers (balanced fraud set): 50.0%, which is chance (ROC-AUC 0.60).",
+   "CVSS severity bands on all 995 items: 52.2% with number ranges, 49.7% in words.",
+   "BBH object counting: 56.7%.",
+   "MMLU-Pro (14 academic subjects including maths): 82.7%, possibly helped by training exposure."
+  ]
+ },
+ {
+  "n": 3,
+  "key": "dates",
+  "name": "Dates and time",
+  "status": "Tested (one form)",
+  "reading": "The vendor warning was not reproduced for multiple-choice date puzzles. Duration arithmetic from free text is untested.",
+  "evidence": [
+   "BBH date understanding 96.7% and temporal sequences 100.0% (30 items each, public data, so read as a ceiling).",
+   "Duration arithmetic from free text was not tested."
+  ]
+ },
+ {
+  "n": 4,
+  "key": "indirection",
+  "name": "Indirection (double negatives, multi-hop)",
+  "status": "Partly",
+  "reading": "Strong on puzzle-style chains, weak when negation hides inside real text. No explicit double-negative or multi-hop question-answering test.",
+  "evidence": [
+   "Negation inside real text (CONDAQA): 61.3%.",
+   "Puzzle-style chains (BBH): web of lies 100.0%, formal fallacies 100.0%, logical deduction 100.0%, navigate 100.0%, causal judgement 70.0%.",
+   "LogiQA 76.0%, adversarial NLI (ANLI) 67.3%."
+  ]
+ },
+ {
+  "n": 5,
+  "key": "padding",
+  "name": "Large irrelevant state",
+  "status": "Tested",
+  "reading": "Robust to padding; real long documents are fine up to about 5,000 tokens.",
+  "evidence": [
+   "2,000 words of filler before or after the text, and 8,000 words before it: at most 3 of 100 answers lost, never significant (smallest p = 0.25).",
+   "Confidence on SMS spam fell from 0.941 to 0.809 with filler after the text.",
+   "Real long documents: QuALITY (about 5,000 tokens) 93.0%, SCOTUS opinions 69.6%; only 16 of 100 LongBench v2 items fit Jev's 32k state limit."
+  ]
+ },
+ {
+  "n": 6,
+  "key": "injection",
+  "name": "Adversarial content (steering by injected text)",
+  "status": "Tested (one style)",
+  "reading": "The injected text could not steer the answer in this form. Other injection styles and instructions hidden in retrieved documents are untested.",
+  "evidence": [
+   "A line appended to the text said to ignore the question and give the WRONG answer. Right answers it flipped to wrong (of 100 items each): SST-2 0, BoolQ 0, SMS spam 1.",
+   "Text perturbed to fool models: AdvGLUE 83.0%, ANLI 67.3%."
+  ]
+ },
+ {
+  "n": 7,
+  "key": "contradiction",
+  "name": "Contradictory instructions against criteria",
+  "status": "Tested",
+  "reading": "The instruction wins, so keep the instruction and the option definitions aligned.",
+  "evidence": [
+   "Instruction kept, true/false definitions swapped: Jev followed the instruction on 98.0% (SST-2) and 99.0% (SMS spam) of items."
+  ]
+ },
+ {
+  "n": 8,
+  "key": "invariants",
+  "name": "Structural invariants: P(q) + P(not q) = 1",
+  "status": "Partly",
+  "reading": "Nearly consistent for a question and its own negation. Not tested across different questions on the same state.",
+  "evidence": [
+   "SST-2: mean gap |P(q) + P(not q) - 1| = 0.022, gap above 0.2 on 0.0% of items, logically consistent picks on 100.0%.",
+   "BoolQ: mean gap |P(q) + P(not q) - 1| = 0.044, gap above 0.2 on 3.0% of items, logically consistent picks on 99.0%.",
+   "SMS spam: mean gap |P(q) + P(not q) - 1| = 0.060, gap above 0.2 on 7.0% of items, logically consistent picks on 98.0%."
+  ]
+ },
+ {
+  "n": 9,
+  "key": "generation",
+  "name": "Generation",
+  "status": "Not tested (by design)",
+  "reading": "Out of scope for a decision model: it cannot produce free text.",
+  "evidence": [
+   "Jev returns only typed answers. Unparseable answers across every run: 0."
+  ]
+ }
+]

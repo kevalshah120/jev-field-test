@@ -1,0 +1,1 @@
+These scripts generated `site/data/*.json` from the private benchmark harness's stored answers. They are published for reading and need that harness to run. `tests/test_site_export.py` there compares every exported number with the results document.

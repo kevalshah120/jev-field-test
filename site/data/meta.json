@@ -1,0 +1,165 @@
+{
+ "model": "jev-1.13.0",
+ "vendor": "TypeSafe AI",
+ "run_window": "2026-09-27 to 2026-09-29",
+ "datasets": 63,
+ "domains": 27,
+ "verdicts": {
+  "A": 11,
+  "B": 29,
+  "C": 23
+ },
+ "dataset_records": 18445,
+ "dataset_answers": 31732,
+ "requests_total": 33817,
+ "requests_by_run": {
+  "smoke-live-2026-09-27": 6,
+  "tier3-2026-09-27": 2100,
+  "ulb-balanced-2026-09-27": 300,
+  "phrasing-test-2026-09-27": 600,
+  "tier1-2026-09-27": 12045,
+  "tier2-2026-09-29": 4176,
+  "ctibench-vsp-worded-2026-09-29": 1990,
+  "option-scaling-2026-09-29": 3200,
+  "jaggedness-2026-09-29": 2000,
+  "decomposition-2026-09-29": 900,
+  "none-option-2026-09-29": 2400,
+  "question-format-2026-09-29": 4100
+ },
+ "input_tokens": 19488345,
+ "cost_usd_total": 1.416,
+ "cost_basis": "run log of docs/RESULTS.md plus per-answer cost of experiments",
+ "median_latency_ms": 378.0,
+ "unparseable_answers": 0,
+ "harness_commit": "8cdeef4",
+ "mean_accuracy_per_dataset": 0.73674,
+ "gates_2pct": 22,
+ "gates_guaranteed": 5,
+ "independent_and_unofficial": true,
+ "anchors": [
+  {
+   "dataset": "typed_decisions",
+   "name": "TypeSafe-style typed decisions",
+   "published": 0.727,
+   "source": "third-party write-up of Jev on the typed-decisions benchmark (see JEV-AND-LAYA-KNOWLEDGE.md section 7)"
+  },
+  {
+   "dataset": "banking77",
+   "name": "Banking77 (77 intents)",
+   "published_low": 0.75,
+   "published_high": 0.84,
+   "source": "spread of eight independent Jev runs collected in docs/RESULTS.md section 2, point 2"
+  }
+ ],
+ "tests": [
+  {
+   "n": 1,
+   "name": "Smoke test",
+   "run": "smoke-live-2026-09-27",
+   "asks": "Do Choice, Score and Noul answers work end to end?",
+   "result": "All three answer types were returned and parsed with 0 errors."
+  },
+  {
+   "n": 2,
+   "name": "Anchors and baselines",
+   "run": "tier3-2026-09-27",
+   "asks": "Does this harness reproduce published numbers, and what do well-known sets give?",
+   "result": "Banking77 80.7%, SST-2 97.0%, BoolQ 92.0%, MMLU-Pro 82.7%, MedMCQA 73.0%, SMS spam 98.0%."
+  },
+  {
+   "n": 3,
+   "name": "Numbers control (ULB)",
+   "run": "ulb-balanced-2026-09-27",
+   "asks": "Can Jev read anonymous numbers, such as card transactions?",
+   "result": "50.0% on a 50/50 set: chance. It says 'not fraud' to every item."
+  },
+  {
+   "n": 4,
+   "name": "Question or statement",
+   "run": "phrasing-test-2026-09-27",
+   "asks": "Does phrasing the yes/no as a question or as a statement change the answer?",
+   "result": "BoolQ 89.0% vs 91.0%; SMS spam 99.0% vs 99.0%; SST-2 97.0% vs 97.0%: no real difference."
+  },
+  {
+   "n": 5,
+   "name": "Core business domains",
+   "run": "tier1-2026-09-27",
+   "asks": "How good is Jev on one strong, human-labelled dataset per business domain?",
+   "result": "41 datasets, mean accuracy 75.0%."
+  },
+  {
+   "n": 6,
+   "name": "Stress tests and calibration",
+   "run": "tier2-2026-09-29",
+   "asks": "Reasoning, negation, perturbed text, long documents, 200 options, and agreement with human raters.",
+   "result": "15 datasets, mean accuracy 66.2%."
+  },
+  {
+   "n": 7,
+   "name": "Numbers or words for severity levels",
+   "run": "ctibench-vsp-worded-2026-09-29",
+   "asks": "Is Jev's weakness on CVSS severity caused by number ranges in the wording, or by the task?",
+   "result": "52.2% with numbers, 49.7% in words (p = 0.16): the task is the problem."
+  },
+  {
+   "n": 8,
+   "name": "Number of options",
+   "run": "option-scaling-2026-09-29",
+   "asks": "How does accuracy change with 4, 6, 16, 32 and 64 options on the same items?",
+   "result": "From 4 to 64 options Jev lost 2 to 21 points on 6 datasets and stayed 49 to 61 times above chance."
+  },
+  {
+   "n": 9,
+   "name": "Failure-mode probes",
+   "run": "jaggedness-2026-09-29",
+   "asks": "Padding, a negated question, an injected instruction, and contradictory definitions.",
+   "result": "Robust to all four on the three tasks tested; see the failure-mode scorecard."
+  },
+  {
+   "n": 10,
+   "name": "Decomposition",
+   "run": "decomposition-2026-09-29",
+   "asks": "Is one hard question worse than several narrow ones combined?",
+   "result": "Phishing: 83.3% with one question, 92.3% with six narrow questions combined (p = 0.0001)."
+  },
+  {
+   "n": 11,
+   "name": "A 'none of these' option",
+   "run": "none-option-2026-09-29",
+   "asks": "Does an explicit way to abstain beat simply dropping low-confidence answers?",
+   "result": "Jev abstains on 0.0% to 4.0% of items and the option adds nothing over a confidence cut-off."
+  },
+  {
+   "n": 12,
+   "name": "Question format",
+   "run": "question-format-2026-09-29",
+   "asks": "Do batching 28 questions, reversing the option order or renaming the option keys change the answers?",
+   "result": "Same pick on 99.5% of answers when batched; option order and key names change no dataset significantly."
+  }
+ ],
+ "verdict_words": {
+  "A": {
+   "label": "Works as-is",
+   "rule": "Accuracy at least 85%, removes at least half of the always-majority baseline's errors, and at most 3% of all answers are wrong with confidence 0.9 or more."
+  },
+  "B": {
+   "label": "Works with a cut-off or review",
+   "rule": "Not A, and accuracy at least 70% while removing at least a quarter of the baseline's errors, or (yes/no questions) ROC-AUC at least 0.90, so a per-task cut-off or human review would work."
+  },
+  "C": {
+   "label": "Not usable zero-shot",
+   "rule": "Anything else: fine-tune, redesign the question, or use another tool."
+  }
+ },
+ "open_questions": [
+  "Double negatives written into the evidence text.",
+  "True multi-hop question answering over several documents.",
+  "Scoping words and implied conditions, with a dedicated test.",
+  "Duration arithmetic from free-text dates.",
+  "P(q) + P(not q) across different questions on the same state.",
+  "Other injection styles, such as an end marker or an instruction hidden inside a retrieved document.",
+  "More than 64 options in a controlled test (the real label sets of 100 to 200 options were measured).",
+  "Images (Jev is text only).",
+  "A re-run on a newer Jev version (the public Hugging Face index already uses jev-1.14.0; this run used jev-1.13.0)."
+ ]
+}

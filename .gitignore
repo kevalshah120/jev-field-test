@@ -1,0 +1,6 @@
+.built-by-build_public_repo
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/

@@ -1,0 +1,497 @@
+[
+ {
+  "domain": "calibration",
+  "name": "Human disagreement",
+  "note": "Good accuracy but far more certain than 100 human raters who split.",
+  "datasets": [
+   "chaosnli"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 1,
+   "C": 0
+  },
+  "answers": 300,
+  "mean_accuracy": 0.72667,
+  "mean_baseline": 0.45333,
+  "wrong_all_90": 0.07
+ },
+ {
+  "domain": "clinical",
+  "name": "Clinical text",
+  "note": "Fair. Ranks cases well but needs a tuned cut-off or review.",
+  "datasets": [
+   "ade_corpus",
+   "healthver"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 0
+  },
+  "answers": 600,
+  "mean_accuracy": 0.76167,
+  "mean_baseline": 0.59834,
+  "wrong_all_90": 0.07666
+ },
+ {
+  "domain": "ecommerce",
+  "name": "E-commerce search",
+  "note": "Not usable zero-shot for search relevance.",
+  "datasets": [
+   "amazon_esci",
+   "wands"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 2
+  },
+  "answers": 600,
+  "mean_accuracy": 0.68666,
+  "mean_baseline": 0.61333,
+  "wrong_all_90": 0.06834
+ },
+ {
+  "domain": "education",
+  "name": "Essay grading",
+  "note": "Not usable for grading essays on a rubric.",
+  "datasets": [
+   "aes2"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 1
+  },
+  "answers": 300,
+  "mean_accuracy": 0.40667,
+  "mean_baseline": 0.36333,
+  "wrong_all_90": 0.0
+ },
+ {
+  "domain": "finance",
+  "name": "Finance",
+  "note": "Fair. Sentiment and ESG framing work with review; central-bank tone is weaker.",
+  "datasets": [
+   "climate_sentiment",
+   "financial_phrasebank",
+   "fomc"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 1
+  },
+  "answers": 900,
+  "mean_accuracy": 0.73,
+  "mean_baseline": 0.53333,
+  "wrong_all_90": 0.07111
+ },
+ {
+  "domain": "fraud",
+  "name": "Fraud",
+  "note": "Fake job postings: only moderate ranking, and it over-flags at the default cut-off. Anonymous card numbers: cannot, by design.",
+  "datasets": [
+   "emscad",
+   "ulb_creditcard"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 2
+  },
+  "answers": 600,
+  "mean_accuracy": 0.655,
+  "mean_baseline": 0.725,
+  "wrong_all_90": 0.0
+ },
+ {
+  "domain": "grounding",
+  "name": "Grounding and hallucination",
+  "note": "Good at checking claims against a source; use a cut-off.",
+  "datasets": [
+   "llm_aggrefact",
+   "ragtruth"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 0
+  },
+  "answers": 600,
+  "mean_accuracy": 0.82666,
+  "mean_baseline": 0.62,
+  "wrong_all_90": 0.04334
+ },
+ {
+  "domain": "intent",
+  "name": "Intent routing",
+  "note": "Strong on routing, even over 150 options. Gate the confusable ones with a cut-off or review.",
+  "datasets": [
+   "banking77",
+   "clinc150",
+   "hwu64"
+  ],
+  "counts": {
+   "A": 1,
+   "B": 2,
+   "C": 0
+  },
+  "answers": 900,
+  "mean_accuracy": 0.83778,
+  "mean_baseline": 0.07222,
+  "wrong_all_90": 0.04111
+ },
+ {
+  "domain": "judge",
+  "name": "LLM-as-judge",
+  "note": "Not usable as a stand-in for human quality ratings; it judges more harshly than people.",
+  "datasets": [
+   "helpsteer2",
+   "mt_bench_human"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 2
+  },
+  "answers": 900,
+  "mean_accuracy": 0.48916,
+  "mean_baseline": 0.41417,
+  "wrong_all_90": 0.05
+ },
+ {
+  "domain": "knowledge",
+  "name": "Knowledge and reading",
+  "note": "Strong on reading comprehension and exam-style knowledge (possibly helped by training exposure).",
+  "datasets": [
+   "boolq",
+   "mmlu_pro"
+  ],
+  "counts": {
+   "A": 1,
+   "B": 1,
+   "C": 0
+  },
+  "answers": 600,
+  "mean_accuracy": 0.87333,
+  "mean_baseline": 0.37833,
+  "wrong_all_90": 0.04
+ },
+ {
+  "domain": "legal",
+  "name": "Legal",
+  "note": "A good first pass with review. Long court opinions are over-confident.",
+  "datasets": [
+   "casehold",
+   "contract_nli",
+   "ledgar",
+   "legalbench",
+   "scotus",
+   "unfair_tos"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 5,
+   "C": 1
+  },
+  "answers": 4160,
+  "mean_accuracy": 0.77997,
+  "mean_baseline": 0.41992,
+  "wrong_all_90": 0.03005
+ },
+ {
+  "domain": "long_context",
+  "name": "Long documents",
+  "note": "Strong on articles of about 5,000 tokens; most very long documents do not fit the context.",
+  "datasets": [
+   "longbench_v2",
+   "quality"
+  ],
+  "counts": {
+   "A": 1,
+   "B": 0,
+   "C": 1
+  },
+  "answers": 316,
+  "mean_accuracy": 0.7775,
+  "mean_baseline": 0.28458,
+  "wrong_all_90": 0.01899
+ },
+ {
+  "domain": "medical",
+  "name": "Medical",
+  "note": "Good on medical question answering with review; triage vignettes are too few to judge.",
+  "datasets": [
+   "medmcqa",
+   "pubmedqa",
+   "triage_bench"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 1
+  },
+  "answers": 645,
+  "mean_accuracy": 0.73296,
+  "mean_baseline": 0.40333,
+  "wrong_all_90": 0.05581
+ },
+ {
+  "domain": "misinformation",
+  "name": "Misinformation",
+  "note": "Not usable for truthfulness scales or mixed-evidence verdicts.",
+  "datasets": [
+   "climate_fever",
+   "liar2"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 2
+  },
+  "answers": 600,
+  "mean_accuracy": 0.45,
+  "mean_baseline": 0.35667,
+  "wrong_all_90": 0.05833
+ },
+ {
+  "domain": "moderation",
+  "name": "Content moderation",
+  "note": "Offensive-language detection is fine; hate-speech nuance is not usable and is confidently wrong.",
+  "datasets": [
+   "hatexplain",
+   "measuring_hate_speech",
+   "olid"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 1,
+   "C": 2
+  },
+  "answers": 1284,
+  "mean_accuracy": 0.65031,
+  "mean_baseline": 0.58427,
+  "wrong_all_90": 0.08801
+ },
+ {
+  "domain": "multilingual",
+  "name": "Multilingual",
+  "note": "Good in 7 languages with English instructions; Swahili is the weakest.",
+  "datasets": [
+   "massive",
+   "xnli"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 0
+  },
+  "answers": 600,
+  "mean_accuracy": 0.785,
+  "mean_baseline": 0.22833,
+  "wrong_all_90": 0.055
+ },
+ {
+  "domain": "public",
+  "name": "Crisis response",
+  "note": "Moderate; useful only with review.",
+  "datasets": [
+   "humaid"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 1
+  },
+  "answers": 300,
+  "mean_accuracy": 0.67333,
+  "mean_baseline": 0.27667,
+  "wrong_all_90": 0.08
+ },
+ {
+  "domain": "reasoning",
+  "name": "Reasoning",
+  "note": "Strong on puzzle-style logic, weak on counting and on negation hidden inside real text.",
+  "datasets": [
+   "bbh",
+   "condaqa",
+   "logiqa"
+  ],
+  "counts": {
+   "A": 1,
+   "B": 1,
+   "C": 1
+  },
+  "answers": 900,
+  "mean_accuracy": 0.74889,
+  "mean_baseline": 0.39333,
+  "wrong_all_90": 0.05
+ },
+ {
+  "domain": "reference",
+  "name": "TypeSafe-style workflows",
+  "note": "Matches the published result on TypeSafe-style workflow decisions.",
+  "datasets": [
+   "typed_decisions"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 1,
+   "C": 0
+  },
+  "answers": 1500,
+  "mean_accuracy": 0.73733,
+  "mean_baseline": 0.50067,
+  "wrong_all_90": 0.02133
+ },
+ {
+  "domain": "robustness",
+  "name": "Robustness",
+  "note": "Good on perturbed text and paraphrase, weaker on adversarial entailment.",
+  "datasets": [
+   "adv_glue",
+   "anli",
+   "paws"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 1
+  },
+  "answers": 900,
+  "mean_accuracy": 0.77667,
+  "mean_baseline": 0.48334,
+  "wrong_all_90": 0.05222
+ },
+ {
+  "domain": "safety",
+  "name": "Safety guardrails",
+  "note": "Strong. Use it as a guardrail; confident answers are almost always right.",
+  "datasets": [
+   "aegis2",
+   "toxicchat",
+   "wildguardmix",
+   "xstest"
+  ],
+  "counts": {
+   "A": 4,
+   "B": 0,
+   "C": 0
+  },
+  "answers": 2227,
+  "mean_accuracy": 0.9262,
+  "mean_baseline": 0.67466,
+  "wrong_all_90": 0.01302
+ },
+ {
+  "domain": "science",
+  "name": "Science",
+  "note": "Good with review.",
+  "datasets": [
+   "scicite"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 1,
+   "C": 0
+  },
+  "answers": 300,
+  "mean_accuracy": 0.79333,
+  "mean_baseline": 0.53667,
+  "wrong_all_90": 0.05333
+ },
+ {
+  "domain": "security",
+  "name": "Security",
+  "note": "Good on security knowledge and CWE mapping with a cut-off; severity bands from a description are weak.",
+  "datasets": [
+   "ctibench_mcq",
+   "ctibench_rcm",
+   "ctibench_vsp",
+   "cve_to_cwe"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 2,
+   "C": 2
+  },
+  "answers": 1200,
+  "mean_accuracy": 0.6725,
+  "mean_baseline": 0.25416,
+  "wrong_all_90": 0.0225
+ },
+ {
+  "domain": "sentiment",
+  "name": "Sentiment and emotion",
+  "note": "Strong on yes/no sentiment. Over-flags multi-label emotion, and is close but rarely exact on 5-level scales.",
+  "datasets": [
+   "go_emotions",
+   "sst2",
+   "sst5"
+  ],
+  "counts": {
+   "A": 1,
+   "B": 0,
+   "C": 2
+  },
+  "answers": 9000,
+  "mean_accuracy": 0.78869,
+  "mean_baseline": 0.58504,
+  "wrong_all_90": 0.03122
+ },
+ {
+  "domain": "social",
+  "name": "Argument quality",
+  "note": "Not usable: far harsher than the people who rated the arguments.",
+  "datasets": [
+   "argument_quality"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 0,
+   "C": 1
+  },
+  "answers": 300,
+  "mean_accuracy": 0.10333,
+  "mean_baseline": 0.89667,
+  "wrong_all_90": 0.08667
+ },
+ {
+  "domain": "spam",
+  "name": "Spam and phishing",
+  "note": "Strong on email and SMS spam. Phishing needs a cut-off, or several narrow questions combined.",
+  "datasets": [
+   "enron_spam",
+   "phishing_email",
+   "sms_spam"
+  ],
+  "counts": {
+   "A": 2,
+   "B": 1,
+   "C": 0
+  },
+  "answers": 900,
+  "mean_accuracy": 0.92333,
+  "mean_baseline": 0.65889,
+  "wrong_all_90": 0.00333
+ },
+ {
+  "domain": "tools",
+  "name": "Agent tool use",
+  "note": "Good for deciding when to call a tool, with review.",
+  "datasets": [
+   "when2call"
+  ],
+  "counts": {
+   "A": 0,
+   "B": 1,
+   "C": 0
+  },
+  "answers": 300,
+  "mean_accuracy": 0.72333,
+  "mean_baseline": 0.35667,
+  "wrong_all_90": 0.08
+ }
+]
